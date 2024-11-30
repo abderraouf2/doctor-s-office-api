@@ -1,99 +1,213 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Doctor's Office API
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This project provides a RESTful API that enables efficient management of doctor-patient interactions, including appointment scheduling, approvals, and other related functionalities. The API is designed for seamless integration with front-end applications to create a robust healthcare management solution.
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Project setup
+## Features
+
+- Appointment Scheduling: Patients can request appointments with doctors.
+- Approval System: Doctors can review and approve appointment requests.
+- Secure Authentication: Protects sensitive data and ensures proper access control.
+- Scalable Design: Built to support multiple doctors, patients, and clinics.
+
+
+## Installation
+
+Clone the Repository
 
 ```bash
-$ npm install
+    git clone https://github.com/abderraouf2/doctor-s-office-api.git
+    cd doctor-s-office-api
 ```
-
-## Compile and run the project
+    
+Install Dependencies
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+Set Up Environment Variables Create a .env file in the root directory with the following variables:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+JWT_SECRET=secret_world             # Secret key for JWT authentication
+DB_HOST=localhost                   # Database host
+DB_PORT=5432                        # Database port
+DB_PASSWORD=postgres                # Database password
+DB_USERNAME=postgres                # Database username
+DB_NAME=doctor_db                   # Name of the database
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Run the Application
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+npm run start:dev
+```
+## Database connection
+
+To connect to the postgres database you have 2 options:
+
+#### 1. Install postgres on your machine:
+If you don't have it already, you need to install it and create the data base specified in the .env file.
+
+#### 2. Use docker:
+Or you can use docker to get a postgres image and run it.
+
+to do that: 
+- Enter the root directory of the project.
+
+- Ensure Docker and docker-compose are installed on your machine.
+
+- On your terminal:
+
+```bash
+docker-compose -f postgres.yml up
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+This will run a postgres docker container, and you can use it to connect to the database.
 
-## Resources
+Check the file `postgres.yml` on the root directory of the project
 
-Check out a few resources that may come in handy when working with NestJS:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
 
-## Support
+## How to use it.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+#### Create a doctor
 
-## Stay in touch
+```http
+  POST http://localhost:3000/doctors/new-doctor
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Body:
+| Attribute | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `email` | `string` | **Required**. |
+| `name` | `string` | **Required**. |
+| `specialization` | `string` | **Required**. |
+| `Password` | `string` | **Required**. |
 
-## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+#### Create a Patient
+
+```http
+  POST http://localhost:3000/patients/create
+```
+
+Body:
+| Attribute | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `email` | `string` | **Required**. |
+| `name` | `string` | **Required**. |
+| `date_of_birth` | `string` | **Required**. ( String for dev purposes ) |
+| `address` | `string` | **Required**. |
+| `Password` | `string` | **Required**. |
+
+
+#### Authentication
+
+##### Specify the role of the user you want to authenticate: 
+
+roles: [`doctor`, `patient`]
+
+```http
+  http://localhost:3000/auth/${role}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `role`      | `string` | **Required**. role must be specified |
+
+#### Returns the Authorization token.
+
+This will return a JWT token that you can use to perform next actions.
+
+
+#### Create an appointment
+
+```http
+  POST http://localhost:3000/appointments
+```
+#### This route is protected, which means only doctors can create an appointment
+#### Auth token must be included in the Authorization section as `Bearer token`
+
+Body:
+| Attribute | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `date` | `string` | **Required**.  ( String for dev purposes )|
+| `time` | `string` | **Required**.  ( String for dev purposes )|
+| `reason` | `string` | **Required**. |
+| `patient` | `number` | **Required**. |
+| `doctor` | `number` | **Required**. |
+
+
+#### Request an appointment
+For patients, they can request an appointment and doctors can approve it.
+
+```http
+  POST http://localhost:3000/appointments/request
+```
+#### This route is protected, which means only patients can create an appointment
+#### Auth token must be included in the Authorization section as `Bearer token`
+
+Body:
+| Attribute | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `date` | `string` | **Required**.  ( String for dev purposes )|
+| `time` | `string` | **Required**. ( String for dev purposes ) |
+| `reason` | `string` | **Required**. |
+| `patient` | `number` | **Required**. |
+| `doctor` | `number` | **Required**. |
+
+
+#### Change appointment status
+
+```http
+  PATCH http://localhost:3000/appointments
+```
+#### This route is protected, which means only doctors can change appointments status
+#### Auth token must be included in the Authorization section as `Bearer token`
+
+Body:
+| Attribute | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `status` | `string` | **Required**.|
+
+status can be: `Pending`, `Approved`, `Rejected`, and `Canceled`
+
+
+#### Get patient appointments
+
+#### This route is protected, which means only patients can fetch patient appointments
+#### Auth token must be included in the Authorization section as `Bearer token`
+
+```http
+  GET http://localhost:3000/appointments/patient-appointments/${id}
+```
+include the `patient id`.
+
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `number` | **Required**. patient id must be specified |
+
+
+#### Get doctor appointments
+
+#### This route is protected, which means only doctors can fetch the appointments.
+#### Auth token must be included in the Authorization section as `Bearer token`
+
+
+```http
+  GET http://localhost:3000/appointments/patient-appointments/${id}
+```
+include the `patient id`.
+
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `number` | **Required**. patient id must be specified |
+
+
+## Postman Collection
+You can download the Postman collection for this API [here](https://github.com/abderraouf2/doctor-s-office-api/blob/main/postman_collection/doctors-office%20api.postman_collection.json).
